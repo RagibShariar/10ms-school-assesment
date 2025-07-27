@@ -1,9 +1,10 @@
 import titleBG from "@/public/assets/banner.jpeg";
 import Image from "next/image";
+import { Course } from "../types/courseData";
 
-export default function Title({ data }) {
+export default function Title({ data }: { data: Course }) {
   return (
-    <div className="relative py-14 md:py-18">
+    <div className="relative pb-14 pt-20 md:py-30 ">
       <Image
         src={titleBG}
         alt="Title background"

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import SectionTitle from "./SectionTitle";
+import { FeaturesValue } from "../types/courseData";
 
-export default function Features({ data }) {
+export default function Features({ data }: { data: FeaturesValue }) {
   return (
     <section className="pb-6">
       <SectionTitle title={data?.name} />

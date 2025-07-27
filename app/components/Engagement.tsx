@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { GroupJoinEngagementValue } from "../types/courseData";
 
-export default function Engagement({ data }) {
+export default function Engagement({
+  data,
+}: {
+  data: GroupJoinEngagementValue;
+}) {
   return (
     <div
       className="w-full p-6 bg-cover bg-center bg-no-repeat rounded-md text-white"

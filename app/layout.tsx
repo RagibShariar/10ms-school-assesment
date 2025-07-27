@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Header from "./components/Header";
 
 const inter = Inter({
   subsets: ["latin"],

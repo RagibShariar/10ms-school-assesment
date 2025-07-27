@@ -4,6 +4,7 @@ import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion";
 import Image from "next/image";
 
 import SectionTitle from "./SectionTitle";
+import { AboutValue } from "../types/courseData";
 
 interface AccordionItemProps {
   header: string;
@@ -47,7 +48,7 @@ const AccordionItem = ({
   </Item>
 );
 
-export default function CourseDetails({ data }) {
+export default function CourseDetails({ data }: { data: AboutValue }) {
   if (!data || data.type !== "about") return null;
 
   return (

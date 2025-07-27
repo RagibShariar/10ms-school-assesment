@@ -1,6 +1,7 @@
+import { PointersValue } from "../types/courseData";
 import SectionTitle from "./SectionTitle";
 
-export default function LearningOutcomes({ data }) {
+export default function LearningOutcomes({ data }: { data: PointersValue }) {
   return (
     <section className="py-8">
       <SectionTitle title={data?.name} />

@@ -3,15 +3,27 @@ import CourseDetails from "./components/CourseDetails";
 import Engagement from "./components/Engagement";
 import ExclusiveFeatures from "./components/ExclusiveFeatures";
 import Features from "./components/Features";
+import Header from "./components/Header";
 import Instructor from "./components/Instructor";
 import LearningOutcomes from "./components/LearningOutcomes";
 import Title from "./components/Title";
-import { Course } from "./types/courseData";
+import {
+  Course,
+  ChecklistItem,
+  MediaItem,
+  CtaText,
+  InstructorValue,
+  FeaturesValue,
+  GroupJoinEngagementValue,
+  PointersValue,
+  FeatureExplanationsValue,
+  AboutValue,
+} from "./types/courseData";
 
 export const dynamic = "force-dynamic"; // SSR
 
-async function getCourseData(lang: "en" | "bn" = "en"): Promise<Course> {
-  const res = await fetch(
+async function getCourseData(lang: string): Promise<Course> {
+  const res: Response = await fetch(
     `https://api.10minuteschool.com/discovery-service/api/v1/products/ielts-course?lang=${lang}`,
     {
       headers: {
@@ -25,62 +37,81 @@ async function getCourseData(lang: "en" | "bn" = "en"): Promise<Course> {
   if (!res.ok) {
     throw new Error("Failed to fetch course data");
   }
-  const data = await res.json();
+  const data: { data: Course } = await res.json();
   return data.data;
 }
 
-export default async function Home() {
-  const data = await getCourseData("bn");
-  console.log("Course Data:", data);
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ lang: string }>;
+}) {
+  const param = await searchParams;
+  const lang = param.lang || "bn";
+  const data: Course = await getCourseData(lang);
+  // console.log("Course Data:", data);
 
   return (
     <>
-      <Title data={data} />
+      <Header lang={lang} />
+      <Title data={data as Course} />
       <div className="md:grid grid-cols-3 gap-12 px-4 md:px-32">
         <div className="col-span-2 ">
           <div>
             <Instructor
-              data={data?.sections?.find(
-                (section) => section?.type === "instructors"
-              )}
+              data={
+                data?.sections?.find(
+                  (section) => section?.type === "instructors"
+                ) as unknown as InstructorValue
+              }
             />
             <Features
-              data={data?.sections?.find(
-                (section) => section?.type === "features"
-              )}
+              data={
+                data?.sections?.find(
+                  (section) => section?.type === "features"
+                ) as unknown as FeaturesValue
+              }
             />
             <Engagement
-              data={data?.sections?.find(
-                (section) => section?.type === "group_join_engagement"
-              )}
+              data={
+                data?.sections?.find(
+                  (section) => section?.type === "group_join_engagement"
+                ) as unknown as GroupJoinEngagementValue
+              }
             />
-            <LearningOutcomes
+            {/* <LearningOutcomes
               data={data?.sections?.find(
                 (section) => section?.type === "learning_outcomes"
               )}
-            />
+            /> */}
             <LearningOutcomes
-              data={data?.sections?.find(
-                (section) => section?.type === "pointers"
-              )}
+              data={
+                data?.sections?.find(
+                  (section) => section?.type === "pointers"
+                ) as unknown as PointersValue
+              }
             />
             <ExclusiveFeatures
-              data={data?.sections?.find(
-                (section) => section?.type === "feature_explanations"
-              )}
+              data={
+                data?.sections?.find(
+                  (section) => section?.type === "feature_explanations"
+                ) as unknown as FeatureExplanationsValue
+              }
             />
             <CourseDetails
-              data={data?.sections?.find(
-                (section) => section?.type === "about"
-              )}
+              data={
+                data?.sections?.find(
+                  (section) => section?.type === "about"
+                ) as unknown as AboutValue
+              }
             />
           </div>
         </div>
         <div className="col-span-1 ">
           <Checklists
-            data={data?.checklist}
-            media={data?.media}
-            cta_text={data?.cta_text}
+            data={data?.checklist as ChecklistItem[]}
+            media={data?.media as MediaItem[]}
+            cta_text={data?.cta_text as CtaText}
           />
         </div>
       </div>

@@ -1,15 +1,17 @@
 import Image from "next/image";
-import { ExclusiveFeatureValue, Section } from "../types/courseData";
 import SectionTitle from "./SectionTitle";
+import { FeatureExplanationsValue } from "../types/courseData";
 
-export default function ExclusiveFeatures({ data }) {
-
+export default function ExclusiveFeatures({
+  data,
+}: {
+  data: FeatureExplanationsValue;
+}) {
   return (
     <section className="mb-8">
       <SectionTitle title={data?.name} />
       <div className="border border-gray-300 rounded-md p-4 mt-6">
         {data?.values?.map((item, index: number) => {
-         
           return (
             <div key={index} className="mb-6 md:flex justify-between gap-4 ">
               <div>
