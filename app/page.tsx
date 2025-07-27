@@ -52,11 +52,11 @@ export default async function Home({
   // console.log("Course Data:", data);
 
   return (
-    <>
+    <main>
       <Header lang={lang} />
       <Title data={data as Course} />
-      <div className="md:grid grid-cols-3 gap-12 px-4 md:px-32">
-        <div className="col-span-2 ">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-4 md:px-32">
+        <div className="md:col-span-2 order-2 md:order-1">
           <div>
             <Instructor
               data={
@@ -107,7 +107,7 @@ export default async function Home({
             />
           </div>
         </div>
-        <div className="col-span-1 ">
+        <div className="md:col-span-1 order-1 md:order-2">
           <Checklists
             data={data?.checklist as ChecklistItem[]}
             media={data?.media as MediaItem[]}
@@ -115,6 +115,6 @@ export default async function Home({
           />
         </div>
       </div>
-    </>
+    </main>
   );
 }

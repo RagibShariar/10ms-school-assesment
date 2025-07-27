@@ -15,7 +15,7 @@ export default function Checklists({
 }) {
   return (
     <div>
-      <div className="  border border-gray-300 rounded-md p-4 bg-white md:-mt-60">
+      <div className="mt-4 border border-gray-300 rounded-md p-4 bg-white md:-mt-60">
         {media && media.length > 0 && (
           <Carousel
             showThumbs={true}

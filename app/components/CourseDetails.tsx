@@ -52,7 +52,7 @@ export default function CourseDetails({ data }: { data: AboutValue }) {
   if (!data || data.type !== "about") return null;
 
   return (
-    <section className="pb-8">
+    <section className="pb-10">
       <SectionTitle title={data?.name} />
       <div className="mt-4 md:px-5 md:border border-gray-300 rounded-md">
         <Accordion>

@@ -5,7 +5,7 @@ import { InstructorValue } from "../types/courseData";
 export default function Instructor({ data }: { data: InstructorValue }) {
   
   return (
-    <section className="pt-6 pb-6">
+    <section className="md:pt-6 pb-6">
       <SectionTitle title={data?.name} />
       <div className="md:border border-gray-300 rounded-md">
         {data?.values?.map((item, index: number) => {
