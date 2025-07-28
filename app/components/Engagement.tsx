@@ -8,7 +8,7 @@ export default function Engagement({
   data: GroupJoinEngagementValue;
 }) {
   return (
-    <div
+    <section
       className="w-full p-6 bg-cover bg-center bg-no-repeat rounded-md text-white"
       style={{
         backgroundImage: `url(${data?.values?.[0]?.background?.image})`,
@@ -32,7 +32,7 @@ export default function Engagement({
               <p className="mb-8">{item?.description}</p>
 
               <Link
-                className="bg-green-600/90 hover:bg-green-700 duration-150 text-white  rounded-md px-8 py-3"
+                className="mb-8 mt-2 w-full bg-green-700/90 hover:bg-green-800 text-white   py-3 px-10 rounded-md  border-b-4 border-green-800 transition-all duration-150"
                 href={item?.cta?.clicked_url}
                 target="_blank"
               >
@@ -51,6 +51,6 @@ export default function Engagement({
           </div>
         );
       })}
-    </div>
+    </section>
   );
 }

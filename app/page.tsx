@@ -20,8 +20,6 @@ import {
   AboutValue,
 } from "./types/courseData";
 
-export const dynamic = "force-dynamic"; // SSR
-
 async function getCourseData(lang: string): Promise<Course> {
   const res: Response = await fetch(
     `https://api.10minuteschool.com/discovery-service/api/v1/products/ielts-course?lang=${lang}`,
@@ -30,7 +28,7 @@ async function getCourseData(lang: string): Promise<Course> {
         "X-TENMS-SOURCE-PLATFORM": "web",
         Accept: "application/json",
       },
-      cache: "no-store", // force SSR
+      next: { revalidate: 3600 },
     }
   );
 
@@ -55,7 +53,7 @@ export default async function Home({
     <main>
       <Header lang={lang} />
       <Title data={data as Course} />
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-4 md:px-32">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-12 px-4 container mx-auto">
         <div className="md:col-span-2 order-2 md:order-1">
           <div>
             <Instructor
@@ -79,11 +77,6 @@ export default async function Home({
                 ) as unknown as GroupJoinEngagementValue
               }
             />
-            {/* <LearningOutcomes
-              data={data?.sections?.find(
-                (section) => section?.type === "learning_outcomes"
-              )}
-            /> */}
             <LearningOutcomes
               data={
                 data?.sections?.find(

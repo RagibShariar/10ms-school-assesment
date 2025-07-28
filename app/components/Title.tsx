@@ -4,7 +4,7 @@ import { Course } from "../types/courseData";
 
 export default function Title({ data }: { data: Course }) {
   return (
-    <div className="relative pb-14 pt-20 md:py-30 ">
+    <section className="relative py-6 md:py-24 ">
       <Image
         src={titleBG}
         alt="Title background"
@@ -13,16 +13,16 @@ export default function Title({ data }: { data: Course }) {
         priority
       />
 
-      <div className=" z-10 p-4 md:pl-32">
-        <h1 className="text-4xl mb-3 font-semibold font-mixed text-white">
+      <div className="container mx-auto p-4 z-10  ">
+        <h1 className="text-2xl md:text-4xl mb-3 font-semibold font-mixed text-white">
           {data?.title}
         </h1>
 
         <div
           dangerouslySetInnerHTML={{ __html: data?.description }}
-          className="font-mixed text-gray-400 max-w-3xl"
+          className="md:max-w-3xl font-mixed text-gray-400 "
         ></div>
       </div>
-    </div>
+    </section>
   );
 }
